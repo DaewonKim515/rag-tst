@@ -1,0 +1,32 @@
+# Document RAG System Dependencies
+
+# Core Configuration & Data Validation
+pydantic>=2.5.0
+pydantic-settings>=2.1.0
+
+# Text Processing & Morphological Analysis
+kiwipiepy>=0.17.0
+chardet>=5.2.0
+
+# Document Parsers
+pymupdf>=1.23.0        # PyMuPDF for PDF text & page extraction
+python-docx>=1.1.0      # Word document parser
+openpyxl>=3.1.0         # Excel document parser
+python-pptx>=0.6.23     # PowerPoint document parser
+
+# Vector Database
+qdrant-client>=1.7.0
+
+# AI & Embedding Models
+torch>=2.1.0
+transformers>=4.36.0
+FlagEmbedding>=1.2.0   # BAAI/bge-m3 & bge-reranker support
+sentence-transformers>=2.3.0
+
+# CLI & Utilities
+rich>=13.7.0            # CLI formatting
+requests>=2.31.0
+
+# Testing & Quality Assurance
+pytest>=8.0.0
+pytest-cov>=4.1.0

@@ -1,0 +1,80 @@
+{
+  "environment": "test",
+  "paths": {
+    "document_root": "document",
+    "metadata_db": "data/metadata.db",
+    "log_dir": "data/logs"
+  },
+  "indexing": {
+    "enabled": true,
+    "scan_on_start": true,
+    "scan_interval_seconds": 300,
+    "hash_algorithm": "md5",
+    "embedding_batch_size": 16,
+    "supported_extensions": [
+      ".pdf",
+      ".docx",
+      ".txt",
+      ".md"
+    ],
+    "max_file_size_mb": 200
+  },
+  "chunking": {
+    "target_tokens": 700,
+    "overlap_tokens": 100,
+    "max_tokens": 900,
+    "preserve_page_boundary": true
+  },
+  "models": {
+    "llm": {
+      "model_id": "Qwen/Qwen3.5-9B",
+      "max_context_tokens": 32768,
+      "max_output_tokens": 1024,
+      "temperature": 0.1
+    },
+    "embedding": {
+      "model_id": "BAAI/bge-m3",
+      "vector_size": 1024,
+      "normalize": true
+    },
+    "reranker": {
+      "enabled": true,
+      "model_id": "BAAI/bge-reranker-v2-m3",
+      "candidate_count": 30,
+      "final_count": 5
+    }
+  },
+  "ocr": {
+    "enabled": true,
+    "provider": "unlimited_ocr",
+    "endpoint": "http://localhost:8000/v1/ocr",
+    "api_key_env": "",
+    "languages": [
+      "ko",
+      "ja",
+      "en"
+    ],
+    "timeout_seconds": 120
+  },
+  "qdrant": {
+    "url": "http://localhost:6333",
+    "collection": "document_chunks_v1",
+    "api_key_env": "",
+    "request_timeout_seconds": 30,
+    "prefer_grpc": false,
+    "https": false,
+    "verify_ssl": true
+  },
+  "retrieval": {
+    "candidate_count": 30,
+    "final_top_k": 5,
+    "minimum_dense_score": 0.25,
+    "max_chunks_per_document": 3
+  },
+  "logging": {
+    "level": "DEBUG",
+    "format": "jsonl",
+    "retention_days": 30,
+    "include_query_text": false
+  }
+}
